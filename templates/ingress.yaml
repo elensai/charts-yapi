@@ -1,0 +1,16 @@
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ .Chart.Name }}-ingress"
+  labels:
+    app: "{{ .Chart.Name }}-ingress"
+spec:
+  rules:
+    - host: "yapi.192.168.1.244.elensdata.cn"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "{{ .Chart.Name }}-svc"
+              servicePort: 3000
