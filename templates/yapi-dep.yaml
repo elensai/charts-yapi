@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Chart.Name }}-dep"
+  labels:
+    app: "{{ .Chart.Name }}-dep"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}-pod"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}-pod"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}-con"
+          image: "{{ .Values.image.yapi }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            YAPI_ADMIN_ACCOUNT: "admin@docker.yapi"
+            YAPI_ADMIN_PASSWORD: "adm1n"
+            YAPI_CLOSEEGISTER: true
+            YAPI_DB_SERVERNAME: "{{ .Chart.Name }}-mongo-svc"
+            YAPI_DB_USER: "admin"
+            YAPI_DB_PASS: "secret123"
+            YAPI_DB_AUTH_SOURCE: "admin"
+            YAPI_DB_PORT: "27017"
+            YAPI_DB_DATABASE: "yapi"
+            YAPI_MAIL_ENABLE: false
+            YAPI_LDAP_LOGIN_ENABLE: false
+            YAPI_PLUGINS: []
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

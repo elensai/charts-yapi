@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Chart.Name }}-mongo-dep"
+  labels:
+    app: "{{ .Chart.Name }}-mongo-dep"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}-mongo-pod"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}-mongo-pod"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}-mongo-con"
+          image: "{{ .Values.image.mongo }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            MONGO_INITDB_ROOT_USERNAME: "admin"
+            MONGO_INITDB_ROOT_PASSWORD: "secret123"
+          ports:
+            - name: http
+              containerPort: 27017
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
