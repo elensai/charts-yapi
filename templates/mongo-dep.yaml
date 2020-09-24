@@ -14,6 +14,10 @@ spec:
       labels:
         app: "{{ .Chart.Name }}-mongo-pod"
     spec:
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-mongo
       containers:
         - name: "{{ .Chart.Name }}-mongo-con"
           image: "{{ .Values.image.mongo }}"
@@ -27,6 +31,9 @@ spec:
             - name: http
               containerPort: 27017
               protocol: TCP
+          volumeMounts:
+            - mountPath: "/data"
+              name: mongo-data
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
