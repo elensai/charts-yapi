@@ -30,7 +30,6 @@ spec:
             YAPI_DB_DATABASE: "yapi"
             YAPI_MAIL_ENABLE: false
             YAPI_LDAP_LOGIN_ENABLE: false
-            YAPI_PLUGINS: []
           ports:
             - name: http
               containerPort: 3000
