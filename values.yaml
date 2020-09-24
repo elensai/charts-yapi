@@ -50,7 +50,7 @@ StoragePath: /nfsdata/BasicRD/yapi
 StorageCapacity: 5Gi
 
 
-nodeSelector: {}
+nodeSelector:
   kubernetes.io/hostname: host162
 
 tolerations: []
