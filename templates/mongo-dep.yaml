@@ -32,7 +32,7 @@ spec:
               containerPort: 27017
               protocol: TCP
           volumeMounts:
-            - mountPath: "/data"
+            - mountPath: "/data/db"
               name: mongo-data
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

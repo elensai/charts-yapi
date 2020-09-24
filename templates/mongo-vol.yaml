@@ -17,7 +17,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Chart.Name }}-sc-{{ .Release.Namespace }}-mongo
   nfs:
-    path: {{ .Values.StoragePath }}/{{ .Chart.Name }}-mongo
+    path: {{ .Values.StoragePath }}/{{ .Chart.Name }}-mongo/db
     server: {{ .Values.StorageServer }}
 ---
 apiVersion: v1
