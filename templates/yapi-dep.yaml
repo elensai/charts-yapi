@@ -19,17 +19,28 @@ spec:
           image: "{{ .Values.image.yapi }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            YAPI_ADMIN_ACCOUNT: "admin@docker.yapi"
-            YAPI_ADMIN_PASSWORD: "adm1n"
-            YAPI_CLOSEEGISTER: true
-            YAPI_DB_SERVERNAME: "{{ .Chart.Name }}-mongo-svc"
-            YAPI_DB_USER: "admin"
-            YAPI_DB_PASS: "secret123"
-            YAPI_DB_AUTH_SOURCE: "admin"
-            YAPI_DB_PORT: "27017"
-            YAPI_DB_DATABASE: "yapi"
-            YAPI_MAIL_ENABLE: false
-            YAPI_LDAP_LOGIN_ENABLE: false
+            - name: YAPI_ADMIN_ACCOUNT
+              value: "admin@docker.yapi"
+            - name: YAPI_ADMIN_PASSWORD
+              value: "adm1n"
+            - name: YAPI_CLOSEEGISTER
+              value: true
+            - name: YAPI_DB_SERVERNAME
+              value: "{{ .Chart.Name }}-mongo-svc"
+            - name: YAPI_DB_USER
+              value: "admin"
+            - name: YAPI_DB_PASS
+              value: "secret123"
+            - name: YAPI_DB_AUTH_SOURCE
+              value: "admin"
+            - name: YAPI_DB_PORT
+              value: "27017"
+            - name: YAPI_DB_DATABASE
+              value: "yapi"
+            - name: YAPI_MAIL_ENABLE
+              value: false
+            - name: YAPI_LDAP_LOGIN_ENABLE
+              value: false
           ports:
             - name: http
               containerPort: 3000
