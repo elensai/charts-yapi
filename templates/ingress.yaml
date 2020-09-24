@@ -7,7 +7,7 @@ metadata:
     app: "{{ .Chart.Name }}-ingress"
 spec:
   rules:
-    - host: "yapi.192.168.1.244.elensdata.cn"
+    - host: "yapi.{{ .Values.ip }}.elensdata.cn"
       http:
         paths:
           - path: /

@@ -1,5 +1,7 @@
 
 
+ip: 192.168.1.244
+
 image:
   yapi: "registry.elensdata.com:333/elensai/yapi-1.9.2:1.9.2"
   mongo: "registry.elensdata.com:333/elensai/mongo:4.4.1"
