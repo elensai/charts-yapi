@@ -24,7 +24,7 @@ spec:
             - name: YAPI_ADMIN_PASSWORD
               value: "adm1n"
             - name: YAPI_CLOSEEGISTER
-              value: true
+              value: "true"
             - name: YAPI_DB_SERVERNAME
               value: "{{ .Chart.Name }}-mongo-svc"
             - name: YAPI_DB_USER
@@ -38,9 +38,9 @@ spec:
             - name: YAPI_DB_DATABASE
               value: "yapi"
             - name: YAPI_MAIL_ENABLE
-              value: false
+              value: "false"
             - name: YAPI_LDAP_LOGIN_ENABLE
-              value: false
+              value: "false"
           ports:
             - name: http
               containerPort: 3000
