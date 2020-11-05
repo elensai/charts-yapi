@@ -16,6 +16,7 @@ spec:
     spec:
       volumes:
         - name: mongo-data
+          defaultMode: 0777
           persistentVolumeClaim:
             claimName: {{ .Chart.Name }}-mongo
       containers:
@@ -34,7 +35,6 @@ spec:
           volumeMounts:
             - mountPath: "/data/db"
               name: mongo-data
-              readOnly: false
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
