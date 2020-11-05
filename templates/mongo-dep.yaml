@@ -16,7 +16,6 @@ spec:
     spec:
       volumes:
         - name: mongo-data
-          defaultMode: 0777
           persistentVolumeClaim:
             claimName: {{ .Chart.Name }}-mongo
       containers:
