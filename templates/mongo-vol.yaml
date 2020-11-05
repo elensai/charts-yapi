@@ -13,7 +13,8 @@ spec:
   capacity:
     storage: {{ .Values.StorageCapacity }}
   accessModes:
-  - ReadWriteMany
+  # - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Chart.Name }}-sc-{{ .Release.Namespace }}-mongo
   nfs:
@@ -28,7 +29,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   accessModes:
-  - ReadWriteMany
+  # - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.StorageCapacity }}
