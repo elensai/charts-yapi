@@ -34,6 +34,7 @@ spec:
           volumeMounts:
             - mountPath: "/data/db"
               name: mongo-data
+              readOnly: false
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
