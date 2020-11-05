@@ -28,10 +28,10 @@ ingress:
 
 resources:
   limits: 
-    cpu: 700m
+    cpu: 500m
     memory: 1024Mi
   requests: 
-    cpu: 700m
+    cpu: 500m
     memory: 1024Mi
 
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -45,8 +45,8 @@ resources:
   #   cpu: 100m
   #   memory: 128Mi
 
-StorageServer: 192.168.1.163
-StoragePath: /nfsdata/BasicRD/yapi
+StorageServer: 192.168.1.137
+StoragePath: /nfsdata/yapi
 StorageCapacity: 5Gi
 
 
